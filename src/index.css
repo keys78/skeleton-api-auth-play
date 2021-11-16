@@ -15,7 +15,7 @@ input.form-control, input.form-control:focus {
 }
 
 
-.progress {
+.progress-1 {
   position: fixed;
   top: 0;
   left: 0;
@@ -30,7 +30,7 @@ input.form-control, input.form-control:focus {
 }
 
 
-.progress .determinate {
+.progress-1 .determinate {
   position: absolute;
   top: 0;
   left: 0;
@@ -42,13 +42,13 @@ input.form-control, input.form-control:focus {
 
  
 
-.progress .indeterminate {
+.progress-1 .indeterminate {
   background-color: #0039d6;
 }
 
  
 
-.progress .indeterminate:before {
+.progress-1 .indeterminate:before {
   content: "";
   position: absolute;
   background-color: inherit;
@@ -66,7 +66,7 @@ input.form-control, input.form-control:focus {
 
  
 
-.progress .indeterminate:after {
+.progress-1 .indeterminate:after {
   content: "";
   position: absolute;
   background-color: inherit;

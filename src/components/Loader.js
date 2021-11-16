@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loader = () => {
     return (
-        <div className="progress flex-shrink-0" >
+        <div className="progress-1" >
             <div className="indeterminate" />
         </div >
     )

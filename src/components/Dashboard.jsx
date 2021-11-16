@@ -3,7 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import useAxios from './useAxios';
 import Loader from './Loader';
-import styled from 'styled-components';
+import { pageAnimation } from "../animations"
+import { motion } from 'framer-motion';
 
 const Dashboard = () => {
     const { data: usersData } = useAxios('https://61879aaf057b9b00177f9a1b.mockapi.io/users')
@@ -21,7 +22,12 @@ const Dashboard = () => {
 
 
     return (
-        <div className="w-11/12 mx-auto mt-10">
+        <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="w-11/12 mx-auto mt-10">
             {usersData ? (
                 <div>
                     {usersData.map((user, i) => (
@@ -39,7 +45,7 @@ const Dashboard = () => {
 
             ) : <Loader />}
 
-        </div>
+        </motion.div>
     )
 }
 

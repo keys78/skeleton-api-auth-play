@@ -5,6 +5,9 @@ import Input from './Input';
 import useAxios from './useAxios';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from './Loader';
+import { pageAnimation } from "../animations"
+import { motion } from 'framer-motion';
+
 
 const UserDetails = () => {
     const { id } = useParams();
@@ -37,11 +40,6 @@ const UserDetails = () => {
 
    
 
-	
-
-
-
-
 
 
     const [assessment, setAssessment] = useState({
@@ -67,7 +65,12 @@ const UserDetails = () => {
 
 
     return (
-        <div className="w-11/12 mx-auto mt-10">
+        <motion.div 
+        variants={pageAnimation}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="w-11/12 mx-auto mt-10">
             {user ? (
                 <div className="md:w-6/12 w-11/12 px-4 px-6 mx-auto border border-2">
                     <button className="mb-5 text-red-500" onClick={() => navigate(-1)}>Back</button>
@@ -101,7 +104,7 @@ const UserDetails = () => {
                 </div>
             ) : <Loader />}
 
-        </div>
+        </motion.div>
     )
 }
 
