@@ -13,7 +13,7 @@ const useAxios = (url) => {
 
     }, [url])
 
-    return {data}
+    return {data, setData}
 }
 
 export default useAxios

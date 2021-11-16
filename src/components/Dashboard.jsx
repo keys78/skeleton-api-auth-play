@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import useAxios from './useAxios';
 import Loader from './Loader';
+import styled from 'styled-components';
 
 const Dashboard = () => {
     const { data: usersData } = useAxios('https://61879aaf057b9b00177f9a1b.mockapi.io/users')
@@ -14,6 +15,7 @@ const Dashboard = () => {
             .then(res => {
 
             }).catch((error) => { console.log(error) })
+           
 
     }
 
@@ -24,21 +26,23 @@ const Dashboard = () => {
                 <div>
                     {usersData.map((user, i) => (
                         <div className="md:w-6/12 w-11/12 px-4 px-6 mx-auto border border-2" key={i}>
-                            <h1>{user.id}</h1>
-                            <h1 className="py-2 text-green-600">{user.name}</h1>
+                            <h6>{user.id}</h6>
+                            <h6 className="py-2 text-green-600">{user.name}</h6>
                             <button className="text-red-500" onClick={() => deleteUser(user.id)}>remove</button>
                             <Link className="text-blue-500 ml-5" to={`/dashboard/${user.id}`}>
                                 view
                             </Link>
                         </div>
                     ))}
-                    <button onClick={() => navigate('/')}>Logout</button>
+                    <button className="absolute top-5 right-60 bg-gray-500 text-white p-2 rounded" onClick={() => navigate('/')}>Logout</button>
                 </div>
 
-            ) :<Loader />}
+            ) : <Loader />}
 
         </div>
     )
 }
+
+
 
 export default Dashboard
