@@ -1,4 +1,4 @@
-<Input name="punctuality" value={fetchedAss[fetchedData.id].userId === fetchedData.id ? fetchedAss[fetchedData.id].punctuality
+{/* <Input name="punctuality" value={fetchedAss[fetchedData.id].userId === fetchedData.id ? fetchedAss[fetchedData.id].punctuality
     : assessment.punctuality}
     onChange={onChange} label="Punctuality" />
 
@@ -89,3 +89,29 @@ const SignUp = () => {
 
 export default SignUp
 
+
+
+
+
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+
+const useAxiosFetch = (url) => {
+    const [data, setData] = useState(null)
+
+    useEffect(() => {
+         axios.get(url).then(res => {
+            if (res.status >= 200 && res.status < 300) {
+                setData(res.data)
+            } 
+        }).catch((error) => { console.log(error) })
+
+    }, [url])
+
+    return {data, setData}
+}
+
+export default useAxiosFetch
+
+
+ */}

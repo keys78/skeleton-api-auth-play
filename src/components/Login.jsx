@@ -2,12 +2,12 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import Input from './Input';
-import useAxios from './useAxios';
+import useAxiosFetch from './useAxiosFetch';
 import { ToastContainer, toast } from 'react-toastify';
 
 
 const Login = () => {
-    const { data: allUsers } = useAxios('https://61879aaf057b9b00177f9a1b.mockapi.io/users')
+    const { data: allUsers } = useAxiosFetch('https://61879aaf057b9b00177f9a1b.mockapi.io/users')
     const notify = () => toast("Invalid user details");
 
     const navigate = useNavigate();
@@ -20,9 +20,7 @@ const Login = () => {
 
     const authUser = (e) => {
         e.preventDefault();
-        const authenticateUser = allUsers && allUsers.find((el) =>
-        (el.email && el.password) === (user.email && user.password))
-
+        const authenticateUser = allUsers && allUsers.find((el) => el.email === user.email && el.password === user.password)
         authenticateUser ? navigate('/dashboard') : notify();
     }
 

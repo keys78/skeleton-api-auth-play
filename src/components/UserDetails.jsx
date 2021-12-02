@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import axios from "axios";
 import Input from './Input';
-import useAxios from './useAxios';
+import useAxiosFetch from './useAxiosFetch';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from './Loader';
 import { pageAnimation } from "../animations"
@@ -12,11 +12,12 @@ import { motion } from 'framer-motion';
 const UserDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { data: loadAssessment } = useAxios('https://61879aaf057b9b00177f9a1b.mockapi.io/assessment')
-    const { data: user } = useAxios(`https://61879aaf057b9b00177f9a1b.mockapi.io/users/${id}`)
+    const { data: loadAssessment } = useAxiosFetch('https://61879aaf057b9b00177f9a1b.mockapi.io/assessment')
+    const { data: user } = useAxiosFetch(`https://61879aaf057b9b00177f9a1b.mockapi.io/users/${id}`)
     const notify = () => toast("user assessment updated");
 
     const [exams, setExams] = useState([{
+        userId: id,
         subject:'',
         score:''
     }])
@@ -81,8 +82,8 @@ const UserDetails = () => {
                     <h6>{user.phone}</h6>
                     <h6 className="mt-10">ASSESMENT</h6>
                     <form>
-                        <Input name="punctuality" value={matched ? matched.punctuality : assessment.punctuality} onChange={onChange} label="Punctuality" />
-                        <Input name="accredibility" value={matched ? matched.accredibility : assessment.accredibility} onChange={onChange} label="Accredibility" />
+                        {/* <Input name="punctuality" value={matched ? matched.punctuality : assessment.punctuality} onChange={onChange} label="Punctuality" />
+                        <Input name="accredibility" value={matched ? matched.accredibility : assessment.accredibility} onChange={onChange} label="Accredibility" /> */}
                         <br />
                         <button onClick={updateAssessment} className="bg-gray-200 p-1 mt-4 rounded" >
                             update user{user.id}
@@ -92,8 +93,10 @@ const UserDetails = () => {
 
                     {exams.map((list, i) => (
                         <div key={i} className="mt-20 flex gap-4">
-                            <input value={list.subject} onChange={e => handleScore(e, i)} className="border" name="subject" />
-                            <input value={list.score} onChange={e => handleScore(e, i)} className="border" name="score" />
+                            <input value={list.subject} 
+                            onChange={e => handleScore(e, i)} className="border" name="subject" />
+                            <input value={list.score} 
+                            onChange={e => handleScore(e, i)} className="border" name="score" />
 
                             {exams.length - 1 === i && <input type="button" value="add" onClick={handleAddInput} />}
                             {exams.length !== 1 && <input type="button" value="remove" onClick={handleRemoveInput} />}
